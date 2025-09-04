@@ -9,13 +9,11 @@
     <!-- Package Properties -->
     <PackageId>Silverness.SharedKernel</PackageId>
     <Title>Silverness.SharedKernel</Title>
-    <Description>A comprehensive shared kernel library for .NET applications implementing
-      Domain-Driven Design (DDD) patterns and CQRS architecture with MediatR integration.</Description>
-    <Summary>Shared kernel library with DDD building blocks, CQRS support, and domain event
-      handling.</Summary>
+    <Description>Essential building blocks for Domain-Driven Design (DDD) applications with CQRS
+      support, including base entities, value objects, domain events, and MediatR integration.</Description>
+    <Summary>DDD building blocks with CQRS support and domain event handling for .NET applications.</Summary>
     <Authors>@Silverness</Authors>
     <Company>www.silverness.org</Company>
-    <Copyright>Copyright © Travis Silvernale 2024</Copyright>
 
     <!-- URLs -->
     <PackageProjectUrl>https://github.com/Silverness/SharedKernel</PackageProjectUrl>
@@ -25,7 +23,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
     <!-- Package Settings -->
-    <PackageTags>ddd;domain-driven-design;cqrs;mediatr;shared-kernel;value-objects;entities;</PackageTags>
     <PackageReleaseNotes>See https://github.com/Silverness/SharedKernelSample/releases for release
       notes.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
