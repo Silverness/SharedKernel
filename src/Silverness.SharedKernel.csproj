@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Silverness.SharedKernel</RootNamespace>
+    <AssemblyName>Silverness.SharedKernel</AssemblyName>
+
+    <!-- Package Properties -->
+    <PackageId>Silverness.SharedKernel</PackageId>
+    <Title>Silverness.SharedKernel</Title>
+    <Description>A comprehensive shared kernel library for .NET applications implementing
+      Domain-Driven Design (DDD) patterns and CQRS architecture with MediatR integration.</Description>
+    <Summary>Shared kernel library with DDD building blocks, CQRS support, and domain event
+      handling.</Summary>
+    <Authors>@Silverness</Authors>
+    <Company>www.silverness.org</Company>
+    <Copyright>Copyright © Travis Silvernale 2024</Copyright>
+
+    <!-- URLs -->
+    <PackageProjectUrl>https://github.com/Silverness/SharedKernel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Silverness/SharedKernel</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- Package Settings -->
+    <PackageTags>ddd;domain-driven-design;cqrs;mediatr;shared-kernel;value-objects;entities;</PackageTags>
+    <PackageReleaseNotes>See https://github.com/Silverness/SharedKernelSample/releases for release
+      notes.</PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <!-- Source Link -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- Documentation -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+    <NoWarn>1701;1702;1591;1573;1712</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
+    <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
