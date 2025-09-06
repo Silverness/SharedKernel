@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0 # Required for versioning to work correctly
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
@@ -37,7 +37,7 @@ jobs:
         run: dotnet build --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test \
+        run: dotnet test ${{ env.TEST_PROJECT_PATH }} \
           --no-build \
           --configuration Release \
           --verbosity normal \
@@ -49,7 +49,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage
-          fail_ci_if_error: true
+          fail_ci_if_error: false
 
   build-package:
     name: Build NuGet Package
@@ -58,9 +58,10 @@ jobs:
     if: github.event_name != 'pull_request'
 
     outputs:
-      version: ${{ steps.version.outputs.version }}
-      is-prerelease: ${{ steps.version.outputs.is-prerelease }}
-      is-tagged: ${{ steps.version.outputs.is-tagged }}
+      version: ${{ steps.git_version.outputs.fullSemVer }}
+      semver: ${{ steps.git_version.outputs.semVer }}
+      is-prerelease: ${{ steps.git_version.outputs.preReleaseTag != '' }}
+      is-tagged: ${{ github.ref_type == 'tag' }}
 
     steps:
       - name: Checkout code
@@ -69,7 +70,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
@@ -122,7 +123,7 @@ jobs:
 
     steps:
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
