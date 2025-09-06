@@ -111,7 +111,7 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build --no-restore --configuration Release \
+          dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release \
             -p:Version="${{ steps.version.outputs.version }}" \
             -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
             -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
