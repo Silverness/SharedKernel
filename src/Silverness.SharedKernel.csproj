@@ -6,11 +6,6 @@
     <RootNamespace>Silverness.SharedKernel</RootNamespace>
     <AssemblyName>Silverness.SharedKernel</AssemblyName>
 
-    <Version Condition="'$(Version)' == ''">0.0.0</Version>
-    <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(Version)</AssemblyVersion>
-    <FileVersion Condition="'$(FileVersion)' == ''">$(AssemblyVersion)</FileVersion>
-    <PackageVersion Condition="'$(PackageVersion)' == ''">$(Version)</PackageVersion>
-
     <!-- Package Properties -->
     <PackageId>Silverness.SharedKernel</PackageId>
     <Title>Silverness.SharedKernel</Title>
@@ -25,8 +20,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
     <!-- Package Settings -->
-    <PackageReleaseNotes>See https://github.com/Silverness/SharedKernelSample/releases for release
-      notes.</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/Silverness/SharedKernelSample/releases for release notes.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
     <!-- Source Link -->
@@ -40,6 +34,17 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <NoWarn>1701;1702;1591;1573;1712</NoWarn>
   </PropertyGroup>
+
+  <!-- Ensure version properties are set before they're needed -->
+  <Target Name="EnsureVersionProperties" BeforeTargets="GetAssemblyVersion;GenerateDepsFile;Pack">
+    <PropertyGroup>
+      <Version Condition="'$(Version)' == '' OR '$(Version)' == '1.0.0'">0.1.0-local</Version>
+      <AssemblyVersion Condition="'$(AssemblyVersion)' == ''">$(Version.Split('-')[0]).0</AssemblyVersion>
+      <FileVersion Condition="'$(FileVersion)' == ''">$(AssemblyVersion)</FileVersion>
+      <PackageVersion Condition="'$(PackageVersion)' == ''">$(Version)</PackageVersion>
+    </PropertyGroup>
+    <Message Text="Version Properties - Version: $(Version), AssemblyVersion: $(AssemblyVersion), FileVersion: $(FileVersion)" Importance="high" />
+  </Target>
 
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="5.0.0" />
