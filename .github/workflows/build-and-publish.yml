@@ -37,7 +37,12 @@ jobs:
         run: dotnet build --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+        run: dotnet test \
+          --no-build \
+          --configuration Release \
+          --verbosity normal \
+          --collect:"XPlat Code Coverage" \
+          --results-directory ./coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
@@ -68,13 +73,13 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install GitVersion
+      - name: Install git_version
         uses: gittools/actions/gitversion/setup@v4.1.0
         with:
           versionSpec: "6.3.x"
 
       - name: Generate version
-        id: gitversion
+        id: git_version
         uses: gittools/actions/gitversion/execute@v4.1.0
         with:
           updateAssemblyInfo: true
@@ -84,27 +89,29 @@ jobs:
 
       - name: Build
         run: |
-          dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release \
-            -p:Version="${{ steps.version.outputs.version }}" \
-            -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
-            -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
-            -p:InformationalVersion="${{ steps.gitversion.outputs.informationalVersion }}"
+          dotnet build ${{ env.PROJECT_PATH }} \
+            --no-restore \
+            --configuration Release \
+            -p:Version="${{ steps.git_version.outputs.fullSemVer }}" \
+            -p:AssemblyVersion="${{ steps.git_version.outputs.assemblySemVer }}" \
+            -p:FileVersion="${{ steps.git_version.outputs.assemblySemFileVer }}" \
+            -p:InformationalVersion="${{ steps.git_version.outputs.informationalVersion }}"
 
       - name: Pack
         run: |
           dotnet pack ${{ env.PROJECT_PATH }} \
             --no-build \
             --configuration Release \
-            -p:PackageVersion="${{ steps.version.outputs.version }}" \
-            -p:Version="${{ steps.version.outputs.version }}" \
-            -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
-            -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
+            -p:PackageVersion="${{ steps.git_version.outputs.fullSemVer }}" \
+            -p:Version="${{ steps.git_version.outputs.fullSemVer }}" \
+            -p:AssemblyVersion="${{ steps.git_version.outputs.assemblySemVer }}" \
+            -p:FileVersion="${{ steps.git_version.outputs.assemblySemFileVer }}" \
             --output ./nupkg
 
       - name: Upload package artifact
         uses: actions/upload-artifact@v4
         with:
-          name: nuget-package-${{ steps.version.outputs.version }}
+          name: nuget-package-${{ steps.git_version.outputs.fullSemVer }}
           path: ./nupkg/*.nupkg
 
   publish-github:
