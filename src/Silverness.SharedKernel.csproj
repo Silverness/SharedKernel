@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>true</IsPackable>
     <Nullable>enable</Nullable>
     <RootNamespace>Silverness.SharedKernel</RootNamespace>
     <AssemblyName>Silverness.SharedKernel</AssemblyName>
@@ -9,7 +10,8 @@
     <!-- Package Properties -->
     <PackageId>Silverness.SharedKernel</PackageId>
     <Title>Silverness.SharedKernel</Title>
-    <Description>Essential building blocks for Domain-Driven Design (DDD) applications with CQRS support, including base entities, value objects, domain events, and MediatR integration.</Description>
+    <Description>Essential building blocks for Domain-Driven Design (DDD) applications with CQRS
+      support, including base entities, value objects, domain events, and MediatR integration.</Description>
     <Summary>DDD building blocks with CQRS support and domain event handling for .NET applications.</Summary>
     <Authors>@Silverness</Authors>
     <Company>www.silverness.org</Company>
@@ -18,20 +20,12 @@
     <RepositoryType>git</RepositoryType>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-
-    <!-- Package Settings -->
     <PackageReleaseNotes>See https://github.com/Silverness/SharedKernelSample/releases for release notes.</PackageReleaseNotes>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-
-    <!-- Source Link -->
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-    <!-- Documentation -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
     <NoWarn>1701;1702;1591;1573;1712</NoWarn>
   </PropertyGroup>
 
@@ -43,7 +37,9 @@
       <FileVersion Condition="'$(FileVersion)' == ''">$(AssemblyVersion)</FileVersion>
       <PackageVersion Condition="'$(PackageVersion)' == ''">$(Version)</PackageVersion>
     </PropertyGroup>
-    <Message Text="Version Properties - Version: $(Version), AssemblyVersion: $(AssemblyVersion), FileVersion: $(FileVersion)" Importance="high" />
+    <Message
+      Text="Version Properties - Version: $(Version), AssemblyVersion: $(AssemblyVersion), FileVersion: $(FileVersion)"
+      Importance="high" />
   </Target>
 
   <ItemGroup>
