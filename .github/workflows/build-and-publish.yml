@@ -124,6 +124,8 @@ jobs:
             --configuration Release \
             -p:PackageVersion="${{ steps.version.outputs.version }}" \
             -p:Version="${{ steps.version.outputs.version }}" \
+            -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
+            -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
             --output ./nupkg
 
       - name: Upload package artifact
