@@ -112,7 +112,7 @@ jobs:
       - name: Build
         run: |
           dotnet build --no-restore --configuration Release \
-            -p:Version="${{ steps.gitversion.outputs.nuGetVersionV2 }}" \
+            -p:Version="${{ steps.version.outputs.version }}" \
             -p:AssemblyVersion="${{ steps.gitversion.outputs.assemblySemVer }}" \
             -p:FileVersion="${{ steps.gitversion.outputs.assemblySemFileVer }}" \
             -p:InformationalVersion="${{ steps.gitversion.outputs.informationalVersion }}"
