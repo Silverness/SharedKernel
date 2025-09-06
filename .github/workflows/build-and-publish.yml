@@ -122,8 +122,8 @@ jobs:
           dotnet pack ${{ env.PROJECT_PATH }} \
             --no-build \
             --configuration Release \
-            -p:PackageVersion=${{ steps.version.outputs.version }} \
-            -p:Version=${{ steps.version.outputs.version }} \
+            -p:PackageVersion="${{ steps.version.outputs.version }}" \
+            -p:Version="${{ steps.version.outputs.version }}" \
             --output ./nupkg
 
       - name: Upload package artifact
