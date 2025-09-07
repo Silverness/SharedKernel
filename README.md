@@ -1,6 +1,6 @@
 # Silverness.SharedKernel
 
-[![NuGet Version](https://img.shields.io/nuget/v/Silverness.SharedKernel.svg)](https://www.nuget.org/packages/Silverness.SharedKernel/)
+[![NuGet Version](https://img.shields.io/nuget/v/Silverness.SharedKernel.svg)](https://github.com/Silverness/SharedKernel/pkgs/nuget/Silverness.SharedKernel)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/Silverness/SharedKernel/build-and-publish.yml?branch=main)](https://github.com/Silverness/SharedKernel/actions)
 
 ## Installation
